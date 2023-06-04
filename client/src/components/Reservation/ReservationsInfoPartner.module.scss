@@ -1,0 +1,19 @@
+.reservations__container {
+  box-shadow: rgba(0, 0, 0, 0.15) 1px 1px 8px;
+  border-radius: 1rem;
+  margin: 5rem auto;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+}
+
+.reservationsInfoPartner__CTA {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}

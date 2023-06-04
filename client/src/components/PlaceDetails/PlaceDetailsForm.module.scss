@@ -1,0 +1,43 @@
+.counter__container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 4rem;
+}
+
+.counter__title {
+  font-weight: bold;
+}
+
+.counter__subtitle {
+  font-size: 0.9rem;
+}
+
+.counter__element {
+  display: flex;
+  flex-direction: row;
+}
+
+.pickers__container {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+}
+
+.price__container {
+  margin-top: 2rem;
+}
+.price__label {
+  & h3 {
+    margin: 0;
+    padding: 0;
+  }
+}
+.price__info {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0;
+}
