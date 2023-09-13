@@ -67,7 +67,7 @@ const Register: FC<{}> = (props: {}) => {
         <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
           <LockOutlinedIcon />
         </Avatar>
-        <Typography component="h1" variant="h5">
+        <Typography component="h1" variant="h5" textAlign="center">
           Моля попълнете данните, за да се регистрирате
         </Typography>
         <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>

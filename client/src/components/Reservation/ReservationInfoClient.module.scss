@@ -1,13 +1,19 @@
+@use "../../styles/variables.scss" as *;
+
 .reservations__client__container {
   box-shadow: rgba(0, 0, 0, 0.15) 1px 1px 8px;
   border-radius: 1rem;
   margin: 5rem auto;
-  width: 50%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   padding: 2rem;
+  text-align: center;
+  @include breakpoint(md) {
+    width: 50%;
+    text-align:unset;
+  }
 }
 
 .reservation__workingTime__hours {
@@ -21,7 +27,10 @@
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-  align-items: flex-start;
+  align-items: center;
+  @include breakpoint(md) {
+    align-items: flex-start;
+  }
 }
 .reservation__actions {
   display: flex;

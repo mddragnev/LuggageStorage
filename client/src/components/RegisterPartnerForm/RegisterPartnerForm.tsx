@@ -221,7 +221,7 @@ const RegisterPartnerForm = ({ nextStep, prevStep, upcommingState }: any) => {
 
           <Box sx={{ display: "flex", flexDirection: "row", pt: 2 }}>
             <Button color="inherit" onClick={handlePrevStep} sx={{ mr: 1 }}>
-              Back
+              Предишна стъпка
             </Button>
             <Box sx={{ flex: "1 1 auto" }} />
 
@@ -229,7 +229,7 @@ const RegisterPartnerForm = ({ nextStep, prevStep, upcommingState }: any) => {
               onClick={handleSubmit}
               disabled={Object.values(state).filter((x) => !x).length !== 0}
             >
-              Next
+              Следваща стъпка
             </Button>
           </Box>
         </Box>

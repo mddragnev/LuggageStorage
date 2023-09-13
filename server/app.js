@@ -17,7 +17,7 @@ mongoose
   })
   .then(() => {
     console.log("Connected to DB");
-  });
+  }).catch((err) => console.log(err));
 
 //middlewares
 app.use(bodyParser.json());
@@ -46,7 +46,12 @@ app.use(userRoutes);
 const reservationRoutes = require("./routes/reservation");
 app.use(reservationRoutes);
 
+const paymentRoutes = require("./routes/payment");
+app.use(paymentRoutes);
+
+
 //starting server
+// console.log("Dsa");
 mongoose.connection.once("open", () => {
   app.listen(process.env.PORT || 4000, () => {
     console.log("listeting to port: " + process.env.PORT);

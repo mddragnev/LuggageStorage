@@ -44,7 +44,7 @@ const ReservationInfoClient = () => {
     },
     {
       onSuccess: (reservation: any) => {
-        console.log("updated");
+
         queryClient.setQueryData(["clientReservations"], (old: any) => {
           const newReservations = [...old].filter(
             (x) => x._id !== reservation._id
@@ -100,7 +100,7 @@ const ReservationInfoClient = () => {
   ) : (
     <div className={classes.reservations__client__container}>
       {data.map((reservation: any) => (
-        <Accordion sx={{ width: "100%" }} key={reservation.shopId}>
+        <Accordion sx={{ width: "100%" }} key={reservation._id}>
           <AccordionSummary expandIcon={<ExpandMoreIcon />}>
             <Typography sx={{ width: "70%", flexShrink: 0 }}>
               Вашата резервация в {reservation.address.storeName}
@@ -111,7 +111,7 @@ const ReservationInfoClient = () => {
               {reservation.reservationDetails.status === "requested"
                 ? "Заявена"
                 : reservation.reservationDetails.status === "approved"
-                ? "Удобрена" 
+                ? "Одобрена" 
                 : reservation.reservationDetails.status === "canceled" ? "Отказана" : "Завършена"}
             </Typography>
           </AccordionSummary>

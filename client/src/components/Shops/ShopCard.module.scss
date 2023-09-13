@@ -1,0 +1,26 @@
+.card__container {
+  display: flex;
+  flex-direction: column;
+  border-radius: 8px;
+  border: 1px solid rgb(228, 228, 231);
+  box-shadow: rgba(0, 0, 0, 0.07) 1px 1px 1px;
+  padding: 1rem;
+  gap: 1rem;
+  margin: 0.5rem 0;
+}
+span {
+  font-size: 0.8rem;
+}
+
+h4 {
+  margin: 0;
+}
+
+.card__cta {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+
+}

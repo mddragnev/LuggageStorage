@@ -1,5 +1,6 @@
 const Store = require("../schema/store");
 const User = require("../schema/user");
+const emailService = require("../services/mailjet");
 
 const getAllUsers = async (req, res) => {
   const users = await User.find({}, "-_id -password -refreshToken -__v");
@@ -19,7 +20,6 @@ const updateUser = async (req, res) => {
     new: true,
     select: "-_id -password -refreshToken -__v",
   }).exec();
-  console.log(newUser);
   res.json(newUser);
 };
 
@@ -36,6 +36,9 @@ const verifyUser = async (req, res) => {
     },
     { new: true, select: "-password -refreshToken -__v" }
   ).exec();
+
+  //send verification email to approved user
+  emailService.succesfulRegistrationEmail(user.firstName, user.email);
 
   //verify place
   const updatedPlace = await Store.findOneAndUpdate(

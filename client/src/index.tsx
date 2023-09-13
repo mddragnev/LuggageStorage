@@ -31,7 +31,7 @@ root.render(
           <App />
         </LocalizationProvider>
       </AuthProvider>
-      <ReactQueryDevtools initialIsOpen />
+      {/* <ReactQueryDevtools initialIsOpen /> */}
     </QueryClientProvider>
   </React.StrictMode>
 );

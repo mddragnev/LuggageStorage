@@ -50,8 +50,6 @@ const Map = ({
   };
 
   const addMarkers = (map: any) => {
-    console.log(lat, lng);
-    console.log(places);
     const infoWindow = new google.maps.InfoWindow();
     const markers = places.map(({ _id, address, workingHours }: any) => {
       const marker = new google.maps.Marker({

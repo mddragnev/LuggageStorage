@@ -13,7 +13,7 @@ const sendMail = async (name, email) => {
         {
           From: {
             Email: "mddragnev@gmail.com",
-            Name: "Martin",
+            Name: "Краткосрочно съхранение на багаж",
           },
           To: [
             {
@@ -30,10 +30,38 @@ const sendMail = async (name, email) => {
         },
       ],
     });
-    console.log(result.body);
   } catch (err) {
     console.log(err.statusCode);
   }
 };
 
-module.exports = sendMail;
+const succesfulRegistrationEmail = async (name, email) => {
+  try {
+    const result = await mailjet.post("send", { version: "v3.1" }).request({
+      Messages: [
+        {
+          From: {
+            Email: "mddragnev@gmail.com",
+            Name: "Краткосрочно съхранение на багаж",
+          },
+          To: [
+            {
+              Email: email,
+            },
+          ],
+          Subject: "Съобщение за потвърждение на регистрациятга",
+          TemplateLanguage: true,
+          TextPart:
+            'Здравейте, {{var:name:"потребител"}}. Вашата регистрация е одобрена!',
+          Variables: {
+            name: name,
+          },
+        },
+      ],
+    });
+  } catch (err) {
+    console.log(err.statusCode);
+  }
+};
+
+module.exports = { sendMail, succesfulRegistrationEmail };

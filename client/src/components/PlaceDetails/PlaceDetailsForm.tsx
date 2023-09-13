@@ -4,9 +4,7 @@ import { Box, Button, Grid, IconButton, TextField } from "@mui/material";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import moment from "moment";
 import React, { useEffect, useState } from "react";
-import useAuth from "../../hooks/useAuth";
 import classes from "./PlaceDetailsForm.module.scss";
-import { useNavigate, useLocation } from "react-router-dom";
 
 const PlaceDetailsForm = ({ workingHours, navigate }: any) => {
   const pricePerBag = 5;
@@ -35,7 +33,6 @@ const PlaceDetailsForm = ({ workingHours, navigate }: any) => {
       noValidate
       onSubmit={handleSubmit}
       sx={{
-        mt: 3,
         boxShadow: "rgba(0, 0, 0, 0.15) 1px 1px 8px",
         borderRadius: "1rem",
         padding: "2rem",

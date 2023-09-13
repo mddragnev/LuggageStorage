@@ -2,6 +2,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { axiosPrivate } from "../../services/axios";
+import ShopView from "../Shops/ShopView";
 import Map from "./Map";
 import classes from "./MapView.module.scss";
 
@@ -57,7 +58,9 @@ const MapView = () => {
 
   return (
     <div className={classes.container}>
-      <div className={classes.shops}></div>
+      <div className={classes.shops}>
+        <ShopView shops={data} handleNavigationToDetails={handleNavigationToDetails}></ShopView>
+      </div>
       <div className={classes.map}>
         <Map
           lat={defaultOptions.lat}

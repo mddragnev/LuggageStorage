@@ -9,7 +9,6 @@ const Reservation = () => {
   const { state }: any = useLocation();
   const { auth }: any = useAuth();
   const privateAxios = useAxiosPrivate();
-  console.log(state);
   const openDirections = () => {
     window.open(
       `https://google.com/maps?q=${state.address.lat},${state.address.lng}`

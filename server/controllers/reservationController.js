@@ -2,7 +2,7 @@ const Reservation = require("../schema/reservation");
 const Store = require("../schema/store");
 const User = require("../schema/user");
 
-const sendEmail = require("../services/mailjet");
+const emailService = require("../services/mailjet");
 
 const createReservation = async (req, res) => {
   if (!req.body.reservation) {
@@ -36,7 +36,7 @@ const createReservation = async (req, res) => {
   const store = await Store.findById(shopId).exec();
   const user = await User.findById(store.userId).exec();
 
-  sendEmail(user.firstName, user.email);
+  emailService.sendMail(user.firstName, user.email);
 
   res.status(201).json(reservation);
 };
@@ -88,6 +88,7 @@ const getAllReservationsOfClient = async (req, res) => {
   const result = [];
   for (const reservation of reservations) {
     const store = await Store.findById(reservation.shopId).exec();
+    if (!store) continue;
     result.push({
       userInfo: reservation.userInfo,
       _id: reservation._id,
@@ -103,7 +104,6 @@ const getAllReservationsOfClient = async (req, res) => {
 
 const updateReservation = async (req, res) => {
   const reservation = req.body.reservation;
-  console.log(reservation);
   if (!reservation) {
     return res.sendStatus(400);
   }
@@ -115,7 +115,6 @@ const updateReservation = async (req, res) => {
       select: "-__v",
     }
   ).exec();
-  console.log(newReservation)
   res.json(newReservation);
 };
 

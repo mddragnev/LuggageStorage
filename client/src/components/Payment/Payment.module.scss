@@ -1,0 +1,15 @@
+@use "../../styles/variables.scss" as *;
+
+.form__container {
+    box-shadow: rgba(0, 0, 0, 0.15) 1px 1px 8px;
+    border-radius: 1rem;
+    margin: 5rem auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    @include breakpoint(md) {
+      width: 50%;
+    }
+  }

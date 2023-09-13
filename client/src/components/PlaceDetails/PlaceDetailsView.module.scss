@@ -1,27 +1,75 @@
+@use "../../styles/variables.scss" as *;
 .view {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  justify-content: center;
   height: 100%;
-  padding: 2rem 10rem;
+  @include breakpoint(md) {
+    padding: 2rem 10rem;
+    flex-direction: row;
+
+  }
   &__information__container {
-    background: blue;
     height: 100%;
-    width: 60%;
+
     display: flex;
     flex-direction: column;
-  }
-
-  &__information__title {
-    background: yellow;
-    height: 100%;
-  }
-
-  &__information__workingTime {
-    height: 100%;
-    background: green;
+    padding: 1rem 2rem 1rem 2rem;
+    @include breakpoint(md) {
+      padding: 2rem;
+      width: 40%;
+  
+    }
   }
 
   &__form {
-    padding: 2rem;
+    padding: 0 2rem 1rem 2rem;
+    @include breakpoint(md) {
+      padding: 2rem;
+      width: 40%;
+  
+    }
   }
+}
+
+.mini__map {
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+  border-radius: 8px;
+  border: 1px solid white;
+  @include breakpoint(md) {
+    height: 100%;
+  }
+}
+
+.map__container {
+  width: 100%;
+  height: 100%
+}
+
+.view__information__workingTime {
+  display: flex;
+  flex-direction: column;
+  border-radius: 8px;
+  border: 1px solid rgb(228, 228, 231);
+  box-shadow: rgba(0, 0, 0, 0.07) 1px 1px 1px;
+  padding: 1rem;
+  gap: 1rem;
+  margin: 0.5rem 0;
+}
+
+
+.reservation__workingTime__hours {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-auto-flow: column;
+  gap: 1rem;
+}
+
+.reservation__workingTime{
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: flex-start;
 }

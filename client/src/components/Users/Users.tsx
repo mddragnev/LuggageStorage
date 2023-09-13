@@ -40,7 +40,6 @@ const Users = () => {
     },
     {
       onSuccess: (user: any) => {
-        console.log("updated");
         queryClient.setQueryData(["users"], (old: any) => {
           const newUsers = [...old].filter((x) => x.email !== user.email);
           const newData = [...newUsers, user];

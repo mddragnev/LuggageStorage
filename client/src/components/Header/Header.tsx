@@ -8,6 +8,7 @@ import useAuth from "../../hooks/useAuth";
 import useLogout from "../../hooks/useLogout";
 import classes from "./Header.module.scss";
 
+
 const Header = () => {
   const { auth }: any = useAuth();
   const navigate = useNavigate();
@@ -81,7 +82,7 @@ const Header = () => {
   return (
     <header className={classes.header}>
       <MatRouterButton to="/" className={classes.header__logo}>
-        Logo is here
+        <img style={{width: "50px", height: "50px"}}src="/images/luggage.png" alt="logo"/>
       </MatRouterButton>
       <div className={classes.header__content}>
         <nav

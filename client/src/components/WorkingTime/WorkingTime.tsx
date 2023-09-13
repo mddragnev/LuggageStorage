@@ -121,11 +121,11 @@ const WorkingTime = ({ nextStep, prevStep, upcommingState }: any) => {
         />
         <Box sx={{ display: "flex", flexDirection: "row", pt: 2 }}>
           <Button color="inherit" onClick={handlePrevStep} sx={{ mr: 1 }}>
-            Back
+            Предишна стъпка
           </Button>
           <Box sx={{ flex: "1 1 auto" }} />
 
-          <Button onClick={handleSubmit}>Next</Button>
+          <Button onClick={handleSubmit}>Следваща стъпка</Button>
         </Box>
       </Box>
     </Container>

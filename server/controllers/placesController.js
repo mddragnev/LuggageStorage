@@ -3,7 +3,6 @@ const Store = require("../schema/store");
 
 const getAllPlaces = async (req, res) => {
   const { locality } = req.query;
-  console.log(locality);
   const places = await Store.find(
     {
       verified: true,

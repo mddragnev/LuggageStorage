@@ -34,7 +34,6 @@ const Login = () => {
   };
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log(location);
     const data = new FormData(event.currentTarget);
     try {
       const result = await login(data.get("email"), data.get("password"));

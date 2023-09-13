@@ -31,11 +31,11 @@ const Agreement = ({ prevStep, nextStep }: any) => {
         </div>
         <Box sx={{ display: "flex", flexDirection: "row", pt: 2 }}>
           <Button color="inherit" onClick={prevStep} sx={{ mr: 1 }}>
-            Back
+            Предишна стъпка
           </Button>
           <Box sx={{ flex: "1 1 auto" }} />
 
-          <Button onClick={() => nextStep({ info: "register" })}>Next</Button>
+          <Button onClick={() => nextStep({ info: "register" })}>Завърши</Button>
         </Box>
       </Box>
     </Container>

@@ -44,7 +44,6 @@ const ReservationsInfoPartner = () => {
     },
     {
       onSuccess: (reservation: any) => {
-        console.log("updated");
         queryClient.setQueryData(["partnerReservations"], (old: any) => {
           const newUsers = [...old].filter((x) => x._id !== reservation._id);
           const newData = [...newUsers, reservation];
@@ -69,7 +68,7 @@ const ReservationsInfoPartner = () => {
     <div className={classes.reservations__container}>Нямате резервации</div>
   ) : (
     <div className={classes.reservations__container}>
-      {data.map((reservation: any) => (
+      {[...data].reverse().map((reservation: any) => (
         <Accordion sx={{ width: "100%" }} key={reservation._id}>
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
@@ -86,7 +85,7 @@ const ReservationsInfoPartner = () => {
                {reservation.reservationDetails.status === "requested"
                 ? "Заявена"
                 : reservation.reservationDetails.status === "approved"
-                ? "Удобрена" 
+                ? "Одобрено" 
                 : reservation.reservationDetails.status === "canceled" ? "Отказана" : "Завършена"}
             </Typography>
           </AccordionSummary>
@@ -105,7 +104,7 @@ const ReservationsInfoPartner = () => {
               </Typography>
               {reservation.reservationDetails.status === "requested" && (
                 <Button onClick={() => approveReservation(reservation)}>
-                  Удобри
+                  Одобри
                 </Button>
               )}
             </div>

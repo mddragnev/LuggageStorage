@@ -22,11 +22,11 @@ const Home = () => {
   const [selectValue, setSelectValue] = useState(null);
   const handleChange = async (event: any, address: any) => {
     if (address) {
-      setValue(address?.description, false);
+      setValue(address.description ? address.description : address, false);
       setSelectValue(address);
       clearSuggestions();
 
-      const results = await getGeocode({ address: address.description });
+      const results = await getGeocode({ address: address.description ? address.description : address });
       //use bounds and check if the lng lat of address are within the bounds (need to set it from addressForm)
       const { lat, lng } = await getLatLng(results[0]);
       navigate("/map", {
@@ -53,9 +53,9 @@ const Home = () => {
           <Autocomplete
             filterOptions={(x) => x}
             options={data}
-            getOptionLabel={(option: any) => option.description}
+            getOptionLabel={(option: any) => option.description ? option.description : option}
             isOptionEqualToValue={(option, value) =>
-              option.description === value.description
+              option?.description === value.description
             }
             freeSolo
             onChange={handleChange}

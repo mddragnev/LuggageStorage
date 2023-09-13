@@ -10,7 +10,6 @@ const login = async (req, res) => {
       .status(400)
       .json({ message: "Имейлът и паролата са задължителни!" });
   }
-
   try {
     const foundUser = await User.findOne({ email: email }).exec();
     if (!foundUser || !foundUser.verified) {
@@ -68,7 +67,6 @@ const login = async (req, res) => {
 
 const register = async (req, res) => {
   const { email, password } = req.body.user;
-  console.log(req.body);
   if (!email || !password) {
     return res
       .status(400)
@@ -88,7 +86,6 @@ const register = async (req, res) => {
       role: req.body.user.role,
       verified: true,
     });
-    console.log(newUser);
     await newUser.save();
     return res.status(201).json({ message: "Потребителят е създаден." });
   } catch (err) {
@@ -119,7 +116,6 @@ const registerPartner = async (req, res) => {
       verified: false,
     });
     await newUser.save();
-    console.log(newUser);
     const newStore = new Store({
       userId: newUser._id,
       address: addressInfo,
@@ -173,7 +169,6 @@ const refreshTokenHandler = async (req, res) => {
       refreshToken,
       process.env.REFRESH_TOKEN_SECRET,
       (err, decoded) => {
-        console.log(decoded);
         if (err || foundUser.email !== decoded.email) {
           return res.sendStatus(403);
         }

@@ -8,6 +8,8 @@ import Login from "./components/Login/Login";
 import Map from "./components/Map/Map";
 import MapView from "./components/Map/MapView";
 import PartnerRegister from "./components/PartnerRegister/PartnerRegister";
+import Payment from "./components/Payment/Payment";
+import PaymentForm from "./components/Payment/Payment";
 import PersistLogin from "./components/PersistLogin/PersistLogin";
 import PlaceDetailsView from "./components/PlaceDetails/PlaceDetailsView";
 import Register from "./components/Register/Register";
@@ -52,6 +54,13 @@ function App() {
                 }
               >
                 <Route path="/reservation" element={<Reservation />} />
+              </Route>
+              <Route
+                element={
+                  <RequireAuth allowedRole={["user", "partner", "admin"]} />
+                }
+              >
+                <Route path="/payment" element={<Payment />} />
               </Route>
               <Route
                 element={
