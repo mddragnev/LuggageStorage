@@ -11,8 +11,10 @@ import {
   Button,
 } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import { useNavigate } from "react-router-dom";
 
 const ReservationInfoClient = () => {
+  const navigate = useNavigate();
   const { auth }: any = useAuth();
   const privateAxios = useAxiosPrivate();
   const queryClient = useQueryClient();
@@ -44,7 +46,6 @@ const ReservationInfoClient = () => {
     },
     {
       onSuccess: (reservation: any) => {
-
         queryClient.setQueryData(["clientReservations"], (old: any) => {
           const newReservations = [...old].filter(
             (x) => x._id !== reservation._id
@@ -91,6 +92,16 @@ const ReservationInfoClient = () => {
     finishMutation.mutate(reserv);
   };
 
+  const navigateToPlace = (reservation: any) => {
+    navigate("/location", {
+      state: {
+        address: reservation.address,
+        workingHours: reservation.workingHours,
+        opened: true,
+      },
+    });
+  };
+
   return isLoading ? (
     <div>Loading</div>
   ) : data.length === 0 ? (
@@ -111,8 +122,10 @@ const ReservationInfoClient = () => {
               {reservation.reservationDetails.status === "requested"
                 ? "Заявена"
                 : reservation.reservationDetails.status === "approved"
-                ? "Одобрена" 
-                : reservation.reservationDetails.status === "canceled" ? "Отказана" : "Завършена"}
+                ? "Одобрена"
+                : reservation.reservationDetails.status === "canceled"
+                ? "Отказана"
+                : "Завършена"}
             </Typography>
           </AccordionSummary>
           <AccordionDetails>
@@ -185,7 +198,14 @@ const ReservationInfoClient = () => {
                   Завърши
                 </Button>
               ) : (
-                <></>
+                <Button
+                  sx={{ margin: "1rem 0" }}
+                  fullWidth
+                  variant="contained"
+                  onClick={() => navigateToPlace(reservation)}
+                >
+                  Запази обекта отново
+                </Button>
               )}
             </div>
           </AccordionDetails>

@@ -3,7 +3,7 @@ const User = require("../schema/user");
 const emailService = require("../services/mailjet");
 
 const getAllUsers = async (req, res) => {
-  const users = await User.find({}, "-_id -password -refreshToken -__v");
+  const users = await User.find({}, "-password -refreshToken -__v");
   if (!users) {
     return res.status(204).json({ message: "Няма потребители!" });
   }
@@ -32,18 +32,20 @@ const verifyUser = async (req, res) => {
   const newUser = await User.findOneAndUpdate(
     { email: user.email },
     {
-      verified: true,
+      verified: user.verified,
     },
     { new: true, select: "-password -refreshToken -__v" }
   ).exec();
 
   //send verification email to approved user
-  emailService.succesfulRegistrationEmail(user.firstName, user.email);
+  if (user.verified) {
+    emailService.sendRegistrationApproveEmail(user.firstName, user.email);
+  }
 
   //verify place
   const updatedPlace = await Store.findOneAndUpdate(
     { userId: newUser._id },
-    { verified: true },
+    { verified: user.verified },
     { new: true }
   ).exec();
   res.json(newUser);

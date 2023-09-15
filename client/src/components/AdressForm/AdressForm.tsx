@@ -27,6 +27,7 @@ const AddressForm = ({ nextStep, prevStep, upcommingState }: any) => {
       directions: upcommingState?.directions || "",
       type: upcommingState?.type || "",
       storageLimit: upcommingState?.storageLimit || 0,
+      price: upcommingState?.price || 5,
     };
   });
   const handleSubmit = async () => {
@@ -47,6 +48,7 @@ const AddressForm = ({ nextStep, prevStep, upcommingState }: any) => {
       directions: data.directions,
       type: data.type,
       storageLimit: +data.storageLimit,
+      price: +data.price,
       lat,
       lng,
       locality: loc,
@@ -247,6 +249,18 @@ const AddressForm = ({ nextStep, prevStep, upcommingState }: any) => {
                   return { ...prevState, storageLimit: true };
                 });
               }
+            }}
+          />
+          <TextField
+            margin="normal"
+            fullWidth
+            type="number"
+            name="priceChooser"
+            label="Цена за единица багаж на ден в лева"
+            id="priceChooser"
+            value={state?.price}
+            onChange={(e) => {
+              setState({ ...state, price: e.target.value });
             }}
           />
         </Box>

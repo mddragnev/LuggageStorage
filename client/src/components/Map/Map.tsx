@@ -25,7 +25,7 @@ const Map = ({
   places: [];
   handleSearch: any;
   handleNavigationToDetails: any;
-  city: string;
+  city: any;
 }) => {
   const [mapInstance, setMapInstance] = useState<google.maps.Map>();
   const [availableMarkers, setAvailableMarkers] = useState<
@@ -94,14 +94,25 @@ const Map = ({
       lng: mapInstance!.getCenter()?.lng() || 0,
     };
 
-    const result = await geocoder.geocode({
+    const results = await geocoder.geocode({
       location: latlng,
     });
 
-    const newCity = result?.results[0]?.address_components?.find((x) =>
-      x.types.includes("locality")
-    )?.long_name;
-    if (city === newCity) {
+    const result = results.results.find(x => x.types.includes("locality"))
+    const northEastBound = result?.geometry.bounds?.getNorthEast();
+    const southWestBound = result?.geometry.bounds?.getSouthWest();
+
+    const newCity = {
+      northEast: {lat: northEastBound?.lat(), lng: northEastBound?.lng()},
+      southWest: {lat: southWestBound?.lat(), lng: southWestBound?.lng()}
+    }
+
+    if (
+      city.northEast.lat === newCity.northEast.lat &&
+      city.northEast.lng === newCity.northEast.lng &&
+      city.southWest.lat === newCity.southWest.lat &&
+      city.southWest.lng === newCity.southWest.lng
+    ) {
       return;
     }
     removeMarkers();

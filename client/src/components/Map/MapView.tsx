@@ -7,14 +7,25 @@ import Map from "./Map";
 import classes from "./MapView.module.scss";
 
 const MapView = () => {
-  const { state }: { state: { lat: number; lng: number; locality: string } } =
+  const { state }: { state: { lat: number; lng: number; locality: {} } } =
     useLocation();
   const queryClient = useQueryClient();
   const navigate = useNavigate();
   const [defaultOptions, setDefaultOptions] = useState({
     lat: state ? state.lat : 42.6977,
     lng: state ? state.lng : 23.3219,
-    locality: state ? state.locality : "София",
+    locality: state
+      ? state.locality
+      : {
+          northEast: {
+            lat: 42.7877752,
+            lng: 23.4569049
+          },
+          southWest: {
+            lat: 42.6030891,
+            lng: 23.1909885
+          },
+        },
   });
   const { data = [], isLoading } = useQuery(
     ["places", defaultOptions.locality],
@@ -59,7 +70,10 @@ const MapView = () => {
   return (
     <div className={classes.container}>
       <div className={classes.shops}>
-        <ShopView shops={data} handleNavigationToDetails={handleNavigationToDetails}></ShopView>
+        <ShopView
+          shops={data}
+          handleNavigationToDetails={handleNavigationToDetails}
+        ></ShopView>
       </div>
       <div className={classes.map}>
         <Map

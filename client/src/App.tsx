@@ -8,6 +8,7 @@ import Login from "./components/Login/Login";
 import Map from "./components/Map/Map";
 import MapView from "./components/Map/MapView";
 import PartnerRegister from "./components/PartnerRegister/PartnerRegister";
+import PartnerShopInfo from "./components/PartnerShopInfo/PartnerShopInfo";
 import Payment from "./components/Payment/Payment";
 import PaymentForm from "./components/Payment/Payment";
 import PersistLogin from "./components/PersistLogin/PersistLogin";
@@ -76,6 +77,12 @@ function App() {
                 <Route
                   path="/partner/reservations"
                   element={<ReservationsInfoPartner />}
+                />
+              </Route>
+              <Route element={<RequireAuth allowedRole={["partner"]} />}>
+                <Route
+                  path="/partner/shop"
+                  element={<PartnerShopInfo />}
                 />
               </Route>
               <Route element={<RequireAuth allowedRole={["admin"]} />}>

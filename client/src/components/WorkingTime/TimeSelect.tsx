@@ -14,7 +14,7 @@ const MenuProps = {
 
 const generateWorkingTimes = () => {
   const result = [];
-  for (let i = 1; i <= 9; i++) {
+  for (let i = 0; i <= 9; i++) {
     result.push(`0${i}:00`);
   }
   for (let i = 10; i <= 19; i++) {

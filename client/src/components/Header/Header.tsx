@@ -45,6 +45,11 @@ const Header = () => {
       role: "partner",
     },
     {
+      name: "Моят обект",
+      link: "partner/shop",
+      role: "partner",
+    },
+    {
       name: "Админ",
       link: "admin",
       role: "admin",

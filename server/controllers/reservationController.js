@@ -36,7 +36,11 @@ const createReservation = async (req, res) => {
   const store = await Store.findById(shopId).exec();
   const user = await User.findById(store.userId).exec();
 
-  emailService.sendMail(user.firstName, user.email);
+  await emailService.sendNewReservationEmail(
+    user.firstName,
+    user.email,
+    reservation._id
+  );
 
   res.status(201).json(reservation);
 };
@@ -115,6 +119,21 @@ const updateReservation = async (req, res) => {
       select: "-__v",
     }
   ).exec();
+  if (newReservation.reservationDetails.status === "canceled") {
+    const store = await Store.findById(newReservation.shopId).exec();
+    const partner = await User.findById(store.userId).exec();
+    const client = await User.findById(newReservation.userInfo.userId);
+    await emailService.cancelReservationEmail(
+      partner.firstName,
+      partner.email,
+      newReservation._id
+    );
+    await emailService.cancelReservationEmail(
+      client.firstName,
+      client.email,
+      newReservation._id
+    );
+  }
   res.json(newReservation);
 };
 

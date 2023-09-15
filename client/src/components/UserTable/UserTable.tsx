@@ -2,6 +2,7 @@ import HowToRegIcon from "@mui/icons-material/HowToReg";
 import PersonRemoveIcon from "@mui/icons-material/PersonRemove";
 import {
   Box,
+  Button,
   Card,
   IconButton,
   Table,
@@ -18,7 +19,9 @@ export const UserTable = (props: any) => {
     items = [],
     onPageChange = () => {},
     onRowsPerPageChange,
-    onApprove,
+    onApproveHandler,
+
+    onDetailsClick,
     page = 0,
     rowsPerPage = 0,
   } = props;
@@ -34,6 +37,7 @@ export const UserTable = (props: any) => {
               <TableCell>Имейл</TableCell>
               <TableCell>Телефон</TableCell>
               <TableCell>Роля</TableCell>
+              <TableCell>Информация за магазин</TableCell>
               <TableCell>Действия</TableCell>
             </TableRow>
           </TableHead>
@@ -47,8 +51,11 @@ export const UserTable = (props: any) => {
                   <TableCell>{customer.phone}</TableCell>
                   <TableCell>{customer.role}</TableCell>
                   <TableCell>
+                    <Button onClick={() => onDetailsClick(customer)}>Детайли</Button>
+                  </TableCell>
+                  <TableCell>
                     <IconButton
-                      onClick={async () => await onApprove(customer)}
+                      onClick={async () => await onApproveHandler(customer, true)}
                       disabled={
                         customer.role !== "partner" || customer.verified
                       }
@@ -56,8 +63,9 @@ export const UserTable = (props: any) => {
                       <HowToRegIcon />
                     </IconButton>
                     <IconButton
+                    onClick={async () => await onApproveHandler(customer, false)}
                       disabled={
-                        customer.role !== "partner" || customer.verified
+                        customer.role !== "partner" || !customer.verified
                       }
                     >
                       <PersonRemoveIcon />

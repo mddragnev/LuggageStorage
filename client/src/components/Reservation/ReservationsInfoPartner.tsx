@@ -62,6 +62,14 @@ const ReservationsInfoPartner = () => {
     validateMutation.mutate(data);
   };
 
+  const cancelReservation = (data: any) => {
+    data.reservationDetails = {
+      ...data.reservationDetails,
+      status: "canceled",
+    };
+    validateMutation.mutate(data);
+  };
+
   return isLoading ? (
     <div>Loading</div>
   ) : data.length === 0 ? (
@@ -82,11 +90,13 @@ const ReservationsInfoPartner = () => {
             <Typography
               sx={{ color: "text.secondary", textAlign: "end", width: "30%" }}
             >
-               {reservation.reservationDetails.status === "requested"
+              {reservation.reservationDetails.status === "requested"
                 ? "Заявена"
                 : reservation.reservationDetails.status === "approved"
-                ? "Одобрено" 
-                : reservation.reservationDetails.status === "canceled" ? "Отказана" : "Завършена"}
+                ? "Одобрено"
+                : reservation.reservationDetails.status === "canceled"
+                ? "Отказана"
+                : "Завършена"}
             </Typography>
           </AccordionSummary>
           <AccordionDetails>
@@ -103,9 +113,14 @@ const ReservationsInfoPartner = () => {
                 ).toLocaleDateString("en-GB")}
               </Typography>
               {reservation.reservationDetails.status === "requested" && (
-                <Button onClick={() => approveReservation(reservation)}>
-                  Одобри
-                </Button>
+                <div className={classes.reservationsActions}>
+                  <Button onClick={() => approveReservation(reservation)}>
+                    Одобри
+                  </Button>
+                  <Button onClick={() => cancelReservation(reservation)}>
+                    Откажи
+                  </Button>
+                </div>
               )}
             </div>
           </AccordionDetails>

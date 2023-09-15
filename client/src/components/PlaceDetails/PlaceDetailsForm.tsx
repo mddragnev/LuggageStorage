@@ -6,14 +6,13 @@ import moment from "moment";
 import React, { useEffect, useState } from "react";
 import classes from "./PlaceDetailsForm.module.scss";
 
-const PlaceDetailsForm = ({ workingHours, navigate }: any) => {
-  const pricePerBag = 5;
+const PlaceDetailsForm = ({ store, workingHours, navigate }: any) => {
   const [luggageSize, setLuggageSize] = useState(2);
   const [fromDay, setFromDay] = useState(moment());
   const [toDay, setToDay] = useState(moment());
 
   const calculateTotalPrice = () => {
-    return pricePerBag * luggageSize * (toDay.diff(fromDay, "days") + 1);
+    return store.price * luggageSize * (toDay.diff(fromDay, "days") + 1);
   };
 
   const handleSubmit = (e: any) => {
@@ -96,7 +95,7 @@ const PlaceDetailsForm = ({ workingHours, navigate }: any) => {
         </div>
         <div className={classes.price__info}>
           <span>
-            {pricePerBag} лв. х {luggageSize} чанти x{" "}
+            {store.price} лв. х {luggageSize} чанти x{" "}
             {toDay.diff(fromDay, "days") + 1} ден
           </span>
           <span>

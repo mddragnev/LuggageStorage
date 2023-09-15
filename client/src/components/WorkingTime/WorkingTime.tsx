@@ -71,7 +71,7 @@ const WorkingTime = ({ nextStep, prevStep, upcommingState }: any) => {
     <Container component="main">
       <Box
         sx={{
-          marginTop: 8,
+          marginTop: 5,
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
@@ -119,14 +119,16 @@ const WorkingTime = ({ nextStep, prevStep, upcommingState }: any) => {
           displayDay={state.sunday.label}
           incomingState={state.sunday}
         />
-        <Box sx={{ display: "flex", flexDirection: "row", pt: 2 }}>
-          <Button color="inherit" onClick={handlePrevStep} sx={{ mr: 1 }}>
-            Предишна стъпка
-          </Button>
-          <Box sx={{ flex: "1 1 auto" }} />
+        {nextStep && prevStep && (
+          <Box sx={{ display: "flex", flexDirection: "row", pt: 2 }}>
+            <Button color="inherit" onClick={handlePrevStep} sx={{ mr: 1 }}>
+              Предишна стъпка
+            </Button>
+            <Box sx={{ flex: "1 1 auto" }} />
 
-          <Button onClick={handleSubmit}>Следваща стъпка</Button>
-        </Box>
+            <Button onClick={handleSubmit}>Следваща стъпка</Button>
+          </Box>
+        )}
       </Box>
     </Container>
   );

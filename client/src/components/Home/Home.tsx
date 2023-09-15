@@ -29,13 +29,16 @@ const Home = () => {
       const results = await getGeocode({ address: address.description ? address.description : address });
       //use bounds and check if the lng lat of address are within the bounds (need to set it from addressForm)
       const { lat, lng } = await getLatLng(results[0]);
+      const northEastBound = results[0].geometry.bounds?.getNorthEast();
+      const southWestBound = results[0].geometry.bounds?.getSouthWest();
       navigate("/map", {
         state: {
           lat,
           lng,
-          locality: results[0].address_components.find((c) =>
-            c.types.includes("locality")
-          )?.long_name,
+          locality: {
+            northEast: {lat: northEastBound?.lat(), lng: northEastBound?.lng()},
+            southWest: {lat: southWestBound?.lat(), lng: southWestBound?.lng()}
+          }
         },
       });
     } else {

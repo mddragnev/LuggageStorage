@@ -39,7 +39,7 @@ const ShopCard = ({ shop, handleNavigationToDetails }: any) => {
       </div>
       <Divider />
       <div className={classes.card__cta}>
-        <div>5лв. / 24 часа / чанта</div>
+        <div>{shop.address.price}лв. / 24 часа / чанта</div>
         {handleNavigationToDetails && (
           <Button
             onClick={() =>

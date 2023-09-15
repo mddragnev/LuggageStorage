@@ -83,6 +83,7 @@ const PlaceDetailsView = () => {
       </div>
       <div className={classes.view__form}>
         <PlaceDetailsForm
+          store={state.address}
           workingHours={state.workingHours}
           navigate={navigateToReservation}
         />

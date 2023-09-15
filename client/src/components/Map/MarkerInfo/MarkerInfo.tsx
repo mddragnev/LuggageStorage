@@ -44,7 +44,7 @@ const MarkerInfo = ({
     <Card sx={{ maxWidth: 345, boxShadow: "none" }}>
       <CardHeader
         title={address.storeName}
-        subheader={`5 лв. за 24 часа на багаж | ${address.type}`}
+        subheader={`${address.price} лв. за 24 часа на багаж | ${address.type}`}
         subheaderTypographyProps={{ variant: "subtitle2" }}
       />
       <Divider light />
