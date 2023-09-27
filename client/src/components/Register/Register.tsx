@@ -9,14 +9,15 @@ import Link from "@mui/material/Link";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import React, { FC } from "react";
-import { Link as RouterLink, useNavigate } from "react-router-dom";
+import { Link as RouterLink, useLocation, useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import User from "../../schema/user";
 import { register } from "../../services/auth";
 
-const Register: FC<{}> = (props: {}) => {
+const Register: FC<{}> = (props: any) => {
   const navigate = useNavigate();
+  const location = useLocation();
   const handleError = (msg: string) => {
     toast.error(msg, {
       position: "top-center",
@@ -41,7 +42,7 @@ const Register: FC<{}> = (props: {}) => {
     };
     try {
       await register(newUser);
-      navigate("/login");
+      navigate("/login", {state:location.state});
     } catch (err: any) {
       if (!err?.response) {
         handleError("Възникна проблем със сървъра.");

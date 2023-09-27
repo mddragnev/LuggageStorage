@@ -72,9 +72,15 @@ const PlaceDetailsView = () => {
                     key={day}
                     className={classes.reservation__workingTime__hours}
                   >
+                    {state.workingHours[day].working ? 
+                    <>
                     <div>{state.workingHours[day].label}</div>
                     <div>{state.workingHours[day].hours.open}</div>
-                    <div>{state.workingHours[day].hours.closing}</div>
+                    <div>{state.workingHours[day].hours.closing}</div> 
+                    </> : <>
+                    <div>{state.workingHours[day].label}</div>
+                    <div>Затворено</div>
+                    </>}
                   </div>
                 ))}
             </div>

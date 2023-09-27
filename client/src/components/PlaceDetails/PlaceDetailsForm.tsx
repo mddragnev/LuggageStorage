@@ -63,10 +63,14 @@ const PlaceDetailsForm = ({ store, workingHours, navigate }: any) => {
       <div className={classes.pickers__container}>
         <div>
           <div>
+            {workingHours[fromDay.format("dddd").toLowerCase()].working ?
+            <>
             {"Отворено от "}
             {workingHours[fromDay.format("dddd").toLowerCase()].hours.open}
             {" до "}
             {workingHours[fromDay.format("dddd").toLowerCase()].hours.closing}
+            </> : "Затворено"}
+            
           </div>
           <DatePicker
             views={["day"]}
@@ -76,10 +80,14 @@ const PlaceDetailsForm = ({ store, workingHours, navigate }: any) => {
         </div>
         <div>
           <div>
+          {workingHours[toDay.format("dddd").toLowerCase()].working ?
+            <>
             {"Отворено от "}
             {workingHours[toDay.format("dddd").toLowerCase()].hours.open}
             {" до "}
             {workingHours[toDay.format("dddd").toLowerCase()].hours.closing}
+            </> : "Затворено"}
+
           </div>
           <DatePicker
             views={["day"]}

@@ -117,7 +117,7 @@ const Login = () => {
               <Link variant="body2">Забравена парола?</Link>
             </Grid>
             <Grid item>
-              <Link to="/register" variant="body2" component={RouterLink}>
+              <Link to="/register" variant="body2" component={RouterLink} state={location.state}>
                 {"Нямате акаунт? Създайте от тук!"}
               </Link>
             </Grid>

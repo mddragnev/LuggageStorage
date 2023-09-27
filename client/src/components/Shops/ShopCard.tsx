@@ -4,6 +4,7 @@ import classes from "./ShopCard.module.scss";
 
 const ShopCard = ({ shop, handleNavigationToDetails }: any) => {
   const isClosed = () => {
+    
     const todayDate = new Date();
     const today = todayDate.toLocaleDateString(undefined, { weekday: "long" });
     const hours = todayDate.getHours();
@@ -12,6 +13,9 @@ const ShopCard = ({ shop, handleNavigationToDetails }: any) => {
     const open = workingTime.open.split(":");
     const closing = workingTime.closing.split(":");
     const fullTime = open[0] === closing[0] && open[1] === closing[1];
+    if (!shop.workingHours[today.toLowerCase()].working) {
+      return false;
+    }
     if (fullTime) {
       return true;
     }
